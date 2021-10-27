@@ -3,25 +3,28 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 
-public class ListenerMouseEx extends JFrame {
+public class ListenerMouseEx1 extends JFrame {
 	private static final long serialVersionUID = 1L;
-	ListenerMouseEx() {
+	ListenerMouseEx1() {
 		setTitle("버튼에 Mouse 이벤트 리스너 작성");
 		setLayout(new FlowLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JButton btn = new JButton("Mouse Event 테스트 버튼");
 		btn.setBackground(Color.YELLOW);
+
 		MyMouseListener listener = new MyMouseListener();
 		btn.addMouseListener(listener);
+		MyActionListener listener1 = new MyActionListener();
+		btn.addActionListener(listener1);
+		
 		add(btn);
 		setSize(300,150);
 		setVisible(true);
 	}
 	public static void main(String [] args) {
-		new ListenerMouseEx();
+		new ListenerMouseEx1();
 	}
-
 	class MyMouseListener implements MouseListener {
 		public void mouseEntered(MouseEvent e) {
 			JButton btn = (JButton)e.getSource();
@@ -35,4 +38,14 @@ public class ListenerMouseEx extends JFrame {
 		public void mouseReleased(MouseEvent e) {}
 		public void mouseClicked(MouseEvent e) {}
 	}
-}
+	
+	class MyActionListener implements ActionListener { 
+		public void actionPerformed(ActionEvent e) {
+			JButton b = (JButton)e.getSource();
+			b.setBackground(Color.green);
+			b.setText("액션");
+
+		}
+	}
+
+} 

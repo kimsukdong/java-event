@@ -2,19 +2,19 @@ package week08;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class MouseListenerEx extends JFrame {
+public class MouseListenerEx1 extends JFrame {
 	private static final long serialVersionUID = 1L;
 	JLabel la;
 	int cnt = 0;
 
-	MouseListenerEx() {
+	MouseListenerEx1() {
 		setTitle("Mouse 이벤트 예제");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel contentPane = new JPanel();
 		setContentPane(contentPane);
 		setLayout(null);
-		contentPane.addMouseListener(new MyMouseListener());
+		contentPane.addMouseListener(new MyMouseAdapter());
 
 		la = new JLabel("hello");
 		la.setSize(50, 20);
@@ -24,24 +24,15 @@ public class MouseListenerEx extends JFrame {
 		setSize(200,200);
 		setVisible(true);
 	}
-	class MyMouseListener implements MouseListener {
+	class MyMouseAdapter extends MouseAdapter {
 		public void mousePressed(MouseEvent e) {
-
-		}
-
-		public void mouseReleased(MouseEvent e) {
 			int x = e.getX();
 			int y = e.getY();
 			la.setLocation(x, y);
-			cnt= e.getClickCount();
-			la.setText("hello"+cnt);
 		}
-		public void mouseClicked(MouseEvent e) {}
-		public void mouseEntered(MouseEvent e) {}
-		public void mouseExited(MouseEvent e) {}
 	}
 
 	public static void main(String [] args) {
-		new MouseListenerEx();
+		new MouseListenerEx1();
 	}
 } 
